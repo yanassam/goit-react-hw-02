@@ -1,11 +1,11 @@
 .header{
   font-size: 40px; 
   color: #2a2a2a; 
-  margin-bottom: 8px; 
+  margin: 15px 0; 
 }
 
 .text{
-  font-size: 20px;
+  font-size: 24px;
   color: #2a2a2a; 
   max-width: 600px; 
   margin: 0 auto 8px;

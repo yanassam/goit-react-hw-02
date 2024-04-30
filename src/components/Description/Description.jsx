@@ -1,6 +1,6 @@
 import s from "./Description.module.css";
 
-const Description = () => {
+export const Description = () => {
   return (
     <div>
       <h1 className={s.header}>Sip Happens Café</h1>
@@ -11,5 +11,3 @@ const Description = () => {
     </div>
   );
 };
-
-export default Description;

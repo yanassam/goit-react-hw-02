@@ -1,5 +1,9 @@
 .feedback{
   white-space: break-spaces;
   text-align: start;  
+  font-size: 20px;
   margin: 15px 0 0 0; 
+}
+.feedbacks{
+
 }

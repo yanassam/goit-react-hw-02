@@ -1,24 +1,47 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./App.css";
-import Description from "./components/Description/Description";
-import Feedback from "./components/Feedback/Feedback";
-import Options from "./components/Options/Options";
+import { Description, Feedback, Options, Notification } from "./components";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
+const initialState = { good: 0, neutral: 0, bad: 0 };
 
 function App() {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-  const total = good + bad + neutral;
+  const [ratings, setRatings] = useLocalStorage("ratings", initialState);
+
+  const updateFeedback = (feedbackType) => {
+    setRatings((prevRatings) => ({
+      ...prevRatings,
+      [feedbackType]: prevRatings[feedbackType] + 1,
+    }));
+  };
+
+  const totalFeedback = ratings.good + ratings.neutral + ratings.bad;
+  const resetFeedback = () => {
+    setRatings({ good: 0, neutral: 0, bad: 0 });
+  };
+  const positiveFeedback = Math.round(
+    ((ratings.good + ratings.neutral) * 100) / totalFeedback
+  );
+
   return (
     <>
       <Description />
       <Options
-        setGood={setGood}
-        setNeutral={setNeutral}
-        setBad={setBad}
-        total={total}
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
       />
-      <Feedback good={good} neutral={neutral} bad={bad} total={total} />
+      {totalFeedback > 0 ? (
+        <Feedback
+          good={ratings.good}
+          neutral={ratings.neutral}
+          bad={ratings.bad}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
+      ) : (
+        <Notification message="No feedback yet" />
+      )}
     </>
   );
 }

@@ -1,17 +1,19 @@
 import s from "./Feedback.module.css";
 
-const Feedback = ({ good, bad, neutral, total }) => {
-  const positive = Math.round((100 * (good + neutral)) / total);
-
-  const result =
-    total > 0
-      ? `Good: ${good} 
-Bad: ${bad}
-Neutral: ${neutral}
-Total: ${total}
-Positive: ${positive}%`
-      : "No feedback yet";
-  return <p className={s.feedback}>{result}</p>;
+export const Feedback = ({
+  good,
+  neutral,
+  bad,
+  totalFeedback,
+  positiveFeedback,
+}) => {
+  return (
+    <ul className={s.feedbacks}>
+      <li className={s.feedback}>Good: {good}</li>
+      <li className={s.feedback}>Bad: {bad}</li>
+      <li className={s.feedback}>Neutral: {neutral}</li>
+      <li className={s.feedback}>TotalFeedback: {totalFeedback}</li>
+      <li className={s.feedback}>Positive: {positiveFeedback}%</li>
+    </ul>
+  );
 };
-
-export default Feedback;

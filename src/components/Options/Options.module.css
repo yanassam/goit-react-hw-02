@@ -4,3 +4,15 @@
   justify-content: center;
   margin-top: 20px;
 }
+.button{
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(104, 104, 187);
+  color: white;
+}
+.buttonR{
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(80, 9, 9);
+  color: white;
+}
